@@ -12,7 +12,7 @@ public class Role implements Serializable {
 
 
     private Long id;
-    private String roleNome;
+    private String roleName;
 
 
 
@@ -20,9 +20,9 @@ public class Role implements Serializable {
     }
 
 
-    public Role(Long id, String roleNome) {
+    public Role(Long id, String roleName) {
         this.id = id;
-        this.roleNome = roleNome;
+        this.roleName = roleName;
     }
 
 
@@ -34,12 +34,12 @@ public class Role implements Serializable {
         this.id = id;
     }
 
-    public String getRoleNome() {
-        return roleNome;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRoleNome(String roleNome) {
-        this.roleNome = roleNome;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
 
@@ -52,11 +52,11 @@ public class Role implements Serializable {
             return false;
         }
         Role role = (Role) o;
-        return Objects.equals(roleNome, role.roleNome);
+        return Objects.equals(roleName, role.roleName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleNome);
+        return Objects.hash(roleName);
     }
 }

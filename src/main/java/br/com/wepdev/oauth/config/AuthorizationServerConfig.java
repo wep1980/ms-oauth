@@ -28,7 +28,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  * Credenciais do usuario
  * username - password(senha) - grand_type : password
  *
- * Dados passados no corpo da requisicao nesse tipo de parametro Body: x-www-form-unlencoded.
+ * Dados passados no corpo da requisicao com o tipo de parametro Body: x-www-form-unlencoded.
  *
  * Token no formato JWT, esse token utiliza uma assinatura para segurança
  *

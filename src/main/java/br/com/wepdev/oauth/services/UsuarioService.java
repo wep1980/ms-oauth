@@ -1,6 +1,6 @@
 package br.com.wepdev.oauth.services;
 
-import br.com.wepdev.oauth.entities.Usuario;
+import br.com.wepdev.oauth.entities.User;
 import br.com.wepdev.oauth.feignclients.UsuarioFeignClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,28 +23,28 @@ public class UsuarioService implements UserDetailsService {
 
 
 
-    public Usuario findByEmail(String email){
-        Usuario usuario = usuarioFeignClient.findbyEmail(email).getBody();
+    public User findByEmail(String email){
+        User user = usuarioFeignClient.findbyEmail(email).getBody();
 
-        if(usuario == null){
+        if(user == null){
             logger.error("Email não existe : " + email);
             throw new IllegalArgumentException("Email não existe");
         }
         logger.info("Email encontrado : " + email);
-        return usuario;
+        return user;
     }
 
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioFeignClient.findbyEmail(username).getBody();
+        User user = usuarioFeignClient.findbyEmail(username).getBody();
 
-        if(usuario == null){
+        if(user == null){
             logger.error("Email não existe : " + username);
             throw new UsernameNotFoundException("Email não existe");
         }
         logger.info("Email encontrado : " + username);
-        return usuario;
+        return user;
     }
 }

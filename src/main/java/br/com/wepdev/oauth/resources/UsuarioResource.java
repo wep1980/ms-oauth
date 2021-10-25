@@ -1,7 +1,7 @@
 package br.com.wepdev.oauth.resources;
 
 
-import br.com.wepdev.oauth.entities.Usuario;
+import br.com.wepdev.oauth.entities.User;
 import br.com.wepdev.oauth.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,10 +23,10 @@ public class UsuarioResource {
 
 
     @GetMapping(value = "/search")
-    public ResponseEntity<Usuario> findByEmail(@RequestParam String email){
+    public ResponseEntity<User> findByEmail(@RequestParam String email){
         try {
-            Usuario usuario = usuarioService.findByEmail(email);
-            return ResponseEntity.ok(usuario);
+            User user = usuarioService.findByEmail(email);
+            return ResponseEntity.ok(user);
         } catch (IllegalArgumentException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 

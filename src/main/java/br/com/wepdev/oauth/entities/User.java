@@ -16,30 +16,30 @@ import java.util.stream.Collectors;
  *
  * UserDetails -> implementação do spring security para configuração de segurança
  */
-public class Usuario implements UserDetails ,Serializable {
+public class User implements UserDetails ,Serializable {
 
 
     private Long id;
 
-    private String nome;
+    private String name;
 
     private String email;
 
-    private String senha;
+    private String password;
 
 
     private Set<Role> roles = new HashSet<>();
 
 
-    public Usuario() {
+    public User() {
     }
 
 
-    public Usuario(Long id, String nome, String email, String senha) {
+    public User(Long id, String name, String email, String password) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.email = email;
-        this.senha = senha;
+        this.password = password;
     }
 
 
@@ -52,12 +52,12 @@ public class Usuario implements UserDetails ,Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -68,12 +68,12 @@ public class Usuario implements UserDetails ,Serializable {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<Role> getRoles() {
@@ -87,13 +87,9 @@ public class Usuario implements UserDetails ,Serializable {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         // Convertendo cada elemento do tipo Role para o tipo GrantedAuthority
-        return roles.stream().map(x -> new SimpleGrantedAuthority(x.getRoleNome())).collect(Collectors.toList());
+        return roles.stream().map(x -> new SimpleGrantedAuthority(x.getRoleName())).collect(Collectors.toList());
     }
 
-    @Override
-    public String getPassword() {
-        return senha;
-    }
 
     @Override
     public String getUsername() {
@@ -131,8 +127,8 @@ public class Usuario implements UserDetails ,Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id);
+        User user = (User) o;
+        return Objects.equals(id, user.id);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package br.com.wepdev.oauth.feignclients;
 
-import br.com.wepdev.oauth.entities.Usuario;
+import br.com.wepdev.oauth.entities.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public interface UsuarioFeignClient {
      * O parametro passado ficara mais ou menos assim : /search?email=nina@gmail.com
      */
     @GetMapping(value = "/search")
-    ResponseEntity<Usuario> findbyEmail(@RequestParam String email);
+    ResponseEntity<User> findbyEmail(@RequestParam String email);
 
 
 }
