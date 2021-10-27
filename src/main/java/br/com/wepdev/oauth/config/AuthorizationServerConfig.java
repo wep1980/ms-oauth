@@ -1,6 +1,8 @@
 package br.com.wepdev.oauth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,7 +38,16 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  */
 @Configuration
 @EnableAuthorizationServer
+@RefreshScope// Atualiza os valores da variaveis em tempo de execução com actuator, quando uma config e feita no repositorio criado de configuração do github
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+
+
+
+    @Value("${oauth.client.name}")
+    private String clientName;
+
+    @Value("${oauth.client.secret}")
+    private String clientSecret;
 
 
     @Autowired
@@ -75,8 +86,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
         clients.inMemory() // Autenticao ocorrendo somene em memoria
-                .withClient("myappname123") // configurando o cliente
-                .secret(passwordEncoder.encode("myappsecret123")) // configurando a senha do aplicativo ja encodada
+                .withClient(clientName) // configurando o cliente
+                .secret(passwordEncoder.encode(clientSecret)) // configurando a senha do aplicativo ja encodada
                 .scopes("read", "write") // Pode ler e escrever
                 .authorizedGrantTypes("password") // Tipo do grant_type
                 .accessTokenValiditySeconds(86400); // Duracao do token, 24Horas
