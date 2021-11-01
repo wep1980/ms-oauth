@@ -13,7 +13,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  * Classe que disponibiliza instancias necessarias para o oauth
  */
 @Configuration
-@RefreshScope// Atualiza os valores da variaveis em tempo de execução com actuator, quando uma config e feita no repositorio criado de configuração do github
+//@RefreshScope// Atualiza os valores da variaveis em tempo de execução com actuator, quando uma config e feita no repositorio criado de configuração do github
 public class AppConfig {
 
 
